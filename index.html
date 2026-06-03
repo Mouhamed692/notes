@@ -429,48 +429,48 @@
         </div>
     </div>
 
-    <div id="mensualites-modal" class="hidden fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl p-6 border border-slate-200 flex flex-col max-h-[90vh]">
-            <div class="border-b pb-3 mb-4">
-                <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-wallet text-indigo-600"></i> Suivi Financier Mensuel
-                </h3>
-                <p id="mens-student-name" class="text-sm font-semibold text-indigo-600 mt-1">Élève : ...</p>
-            </div>
-            
-            <div class="flex-1 overflow-y-auto space-y-4">
-                <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5 flex justify-between items-center">
-                    <div>
-                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Tarif mensuel de base de cette classe</p>
-                        <p id="mens-default-amount" class="text-lg font-bold text-slate-900 mt-0.5">0 F CFA / mois</p>
-                    </div>
-                    <span class="text-xs text-slate-400 bg-white border border-slate-200 px-2.5 py-1 rounded-md font-medium">Bilan individuel</span>
+  <div id="mensualites-modal" class="hidden fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-2 sm:p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl p-4 sm:p-6 border border-slate-200 flex flex-col max-h-[90vh]">
+        <div class="border-b pb-3 mb-4">
+            <h3 class="text-lg sm:text-xl font-bold text-slate-800 flex items-center gap-2">
+                <i class="fa-solid fa-wallet text-indigo-600"></i> Suivi Financier
+            </h3>
+            <p id="mens-student-name" class="text-xs sm:text-sm font-semibold text-indigo-600 mt-1 truncate">Élève : ...</p>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto space-y-4">
+            <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                <div>
+                    <p class="text-[10px] font-medium text-slate-500 uppercase tracking-wider">Tarif mensuel de base</p>
+                    <p id="mens-default-amount" class="text-sm sm:text-lg font-bold text-slate-900">0 F CFA / mois</p>
                 </div>
-
-                <div class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
-                    <table class="w-full border-collapse text-left text-sm">
-                        <thead>
-                            <tr class="bg-slate-50 border-b border-slate-100 text-slate-500 font-semibold uppercase text-[11px] tracking-wider">
-                                <th class="px-4 py-3">Mois</th>
-                                <th class="px-4 py-3">Statut</th>
-                                <th class="px-4 py-3 text-right">Montant Payé</th>
-                                <th class="px-4 py-3 text-center">Date encaissement</th>
-                                <th class="px-4 py-3 text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="mensualites-list-tbody" class="divide-y divide-slate-100 text-slate-700"></tbody>
-                    </table>
-                </div>
+                <span class="text-[10px] text-slate-400 bg-white border border-slate-200 px-2 py-0.5 rounded-md font-medium">Bilan individuel</span>
             </div>
 
-            <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex justify-end mt-4">
-                <button type="button" onclick="closeModal('mensualites-modal')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-xl font-semibold shadow-sm transition-all text-sm">
-                    Fermer la fenêtre
-                </button>
+            <!-- Ajout de overflow-x-auto ici pour rendre le tableau scrollable sur mobile -->
+            <div class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-x-auto">
+                <table class="w-full border-collapse text-left text-xs sm:text-sm min-w-[500px]">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-100 text-slate-500 font-semibold uppercase text-[10px] tracking-wider">
+                            <th class="px-2 md:px-4 py-3">Mois</th>
+                            <th class="px-2 md:px-4 py-3">Statut</th>
+                            <th class="px-2 md:px-4 py-3 text-right">Montant</th>
+                            <th class="px-2 md:px-4 py-3 text-center">Date</th>
+                            <th class="px-2 md:px-4 py-3 text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mensualites-list-tbody" class="divide-y divide-slate-100 text-slate-700"></tbody>
+                </table>
             </div>
         </div>
-    </div>
 
+        <div class="pt-4 mt-2 border-t border-slate-100 flex justify-end">
+            <button type="button" onclick="closeModal('mensualites-modal')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-xl font-semibold shadow-sm transition-all text-sm w-full sm:w-auto">
+                Fermer
+            </button>
+        </div>
+    </div>
+</div>
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
     <script>
