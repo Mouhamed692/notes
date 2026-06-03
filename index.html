@@ -15,11 +15,11 @@
     <link rel="apple-touch-icon" href="icon-192.png">
     
     <title>GestNotes – Administration scolaire</title>
-    
     <script src="tailwind.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="fontawesome.min.css">
     <script src="html2pdf.bundle.min.js"></script>
-    <script src="https://unpkg.com/idb-keyval@6.2.1/dist/umd.js"></script>
+    <script src="idb-keyval.js"></script>
+    
      <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -1306,35 +1306,47 @@ function imprimerBulletinEleve(studentId) {
         }
 function updatePeriodDropdown() {
     // 1. Récupérer la classe sélectionnée
-    const classKey = document.getElementById('select-classe').value; // Remplacez 'select-classe' par l'ID de votre menu de classe
-    const isPrim = isPrimary(classKey); // Utilise la fonction isPrimary que nous avons créée
+    const classSelect = document.getElementById('select-classe');
+    if (!classSelect) return; 
     
-    // 2. Récupérer le menu des périodes
-    const periodSelect = document.getElementById('select-period'); // Remplacez 'select-period' par l'ID de votre menu Semestre/Trimestre
+    const classKey = classSelect.value;
+    const isPrim = isPrimary(classKey); 
+    const periodSelect = document.getElementById('select-period');
+    if (!periodSelect) return;
     
-    // 3. Sauvegarder la valeur actuelle si possible
-    const currentVal = periodSelect.value;
+    // 2. Mémoriser la période courante (depuis le stockage local ou la valeur actuelle)
+    let savedPeriod = localStorage.getItem('periodeCourante') || periodSelect.value || "1";
     
-    // 4. Vider le menu
+    // 3. Vider le menu actuel
     periodSelect.innerHTML = '';
     
-    // 5. Remplir avec 3 (primaire) ou 2 (secondaire) options
+    // 4. Définir les limites (3 pour primaire, 2 pour secondaire)
     const max = isPrim ? 3 : 2;
     const label = isPrim ? "Trimestre" : "Semestre";
     
+    // 5. Remplir le menu dynamiquement
     for (let i = 1; i <= max; i++) {
         let opt = document.createElement('option');
         opt.value = i;
         opt.textContent = `${label} ${i}`;
+        
+        // Maintien automatique de la période courante
+        // Si on était au Trimestre 3 et qu'on passe au Secondaire (max 2), on sélectionne le Semestre 2
+        if (i.toString() === savedPeriod || (i === max && parseInt(savedPeriod) > max)) {
+            opt.selected = true;
+        }
+        
         periodSelect.appendChild(opt);
     }
-    
-    // 6. Restaurer la valeur si elle existe toujours (ex: on reste sur le 1er choix)
-    if (currentVal <= max) {
-        periodSelect.value = currentVal;
-    }
+
+    // Sauvegarder la valeur finale ajustée
+    localStorage.setItem('periodeCourante', periodSelect.value);
 }
-        
+      // Écoute les changements manuels de trimestre/semestre pour stabiliser l'affichage
+document.getElementById('select-period').addEventListener('change', function(e) {
+    localStorage.setItem('periodeCourante', e.target.value);
+    // Si tu as une fonction pour recharger ou rafraîchir les notes de la table, appelle-la ici (ex: loadGrades())
+});  
     </script>
 </body>
 </html>
