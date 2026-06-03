@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestNotes - Accueil</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#4338ca">
+    <link class="apple-touch-icon" href="https://img.icons8.com/fluency/192/test-passed.png">
+    <link class="apple-touch-icon" href="icon-192.png">
+  
+</head>
+<body class="bg-indigo-900 min-h-screen flex items-center justify-center p-6">
+    <div class="max-w-md w-full bg-white rounded-3xl shadow-2xl overflow-hidden text-center p-8">
+        <div class="w-24 h-24 bg-indigo-100 text-indigo-600 rounded-2xl mx-auto flex items-center justify-center text-4xl font-black mb-6 shadow-inner">
+            GN
+        </div>
+        <h1 class="text-3xl font-black text-slate-800 mb-2">GestNotes Pro</h1>
+        <p class="text-slate-500 mb-8 font-medium">Système d'administration scolaire intelligent pour le Sénégal.</p>
+        
+        <div class="space-y-4">
+            <a href="index.html" class="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-2xl transition-all shadow-lg hover:shadow-indigo-200">
+                🚀 Accéder à la Gestion
+            </a>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 border border-slate-100 rounded-2xl bg-slate-50">
+                <p class="font-bold text-slate-700">magui ziar ✅</p>
+                </div>
+                <div class="p-4 border border-slate-100 rounded-2xl bg-slate-50">
+                    <p class="text-xs font-bold text-slate-400 uppercase">Version</p>
+                    <p class="font-bold text-slate-700">1.0 Pro</p>
+                </div>
+            </div>
+        </div>
+        
+        <p class="mt-8 text-[10px] text-slate-400 uppercase tracking-widest font-bold">Dalal Ak Diam</p>
+    </div>
+
+    <script>
+        // Enregistrement du Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js');
+        }
+    </script>
+</body>
+</html>

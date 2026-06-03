@@ -1,0 +1,24 @@
+{
+  "name": "gestnotes",
+  "version": "1.0.0",
+  "description": "Application d'administration scolaire et gestion des notes",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "keywords": [
+    "scolaire",
+    "notes",
+    "gestion"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "idb-keyval": "^6.2.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "serve": "^14.2.0"
+  }
+}
