@@ -2,17 +2,20 @@ const CACHE_NAME = 'gestnotes-v3'; // On passe à v3 pour forcer la mise à jour
 
 // Liste des fichiers indispensables pour le fonctionnement 100% hors-ligne
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/bulletin.html',
-  '/accueil.html',
-  '/tailwind.min.js',
-  '/fontawesome.min.css',
-  '/html2pdf.bundle.min.js',
-  '/idb-keyval.js', // <-- Ajout obligatoire pour la base de données !
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png'
+  './',
+  './index.html',
+  './bulletin.html',
+  './accueil.html',
+  './tailwind.min.js',
+  './fontawesome.min.css',
+  './html2pdf.bundle.min.js',
+  './idb-keyval.js', 
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
+  // Ajout OBLIGATOIRE des polices pour que les icônes s'affichent !
+  './webfonts/fa-solid-900.woff2',
+  './webfonts/fa-solid-900.ttf'
 ];
 
 // 1. Installation : Création du cache et mise en mémoire des ressources
