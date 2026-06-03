@@ -622,6 +622,7 @@
             appState.selectedClass = document.getElementById('filter-class').value;
             updateSectionFilterOptions();
             updateHeaderDisplays();
+            updatePeriodDropdown();
             render();
         }
 
@@ -1303,6 +1304,37 @@ function imprimerBulletinEleve(studentId) {
                 row.style.display = text.includes(val) ? "" : "none";
             }
         }
+function updatePeriodDropdown() {
+    // 1. Récupérer la classe sélectionnée
+    const classKey = document.getElementById('select-classe').value; // Remplacez 'select-classe' par l'ID de votre menu de classe
+    const isPrim = isPrimary(classKey); // Utilise la fonction isPrimary que nous avons créée
+    
+    // 2. Récupérer le menu des périodes
+    const periodSelect = document.getElementById('select-period'); // Remplacez 'select-period' par l'ID de votre menu Semestre/Trimestre
+    
+    // 3. Sauvegarder la valeur actuelle si possible
+    const currentVal = periodSelect.value;
+    
+    // 4. Vider le menu
+    periodSelect.innerHTML = '';
+    
+    // 5. Remplir avec 3 (primaire) ou 2 (secondaire) options
+    const max = isPrim ? 3 : 2;
+    const label = isPrim ? "Trimestre" : "Semestre";
+    
+    for (let i = 1; i <= max; i++) {
+        let opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = `${label} ${i}`;
+        periodSelect.appendChild(opt);
+    }
+    
+    // 6. Restaurer la valeur si elle existe toujours (ex: on reste sur le 1er choix)
+    if (currentVal <= max) {
+        periodSelect.value = currentVal;
+    }
+}
+        
     </script>
 </body>
 </html>
