@@ -14,8 +14,8 @@ const ASSETS = [
   './icon-192.png',
   './icon-512.png',
   // Ajout OBLIGATOIRE des polices pour que les icônes s'affichent !
-  './webfonts/fa-solid-900.woff2',
-  './webfonts/fa-solid-900.ttf'
+  './fa-solid-900.woff2',
+  './fa-solid-900.ttf'
 ];
 
 // 1. Installation : Création du cache et mise en mémoire des ressources
