@@ -2,15 +2,15 @@ const CACHE_NAME = 'gestnotes-v3'; // On passe à v3 pour forcer la mise à jour
 
 // Liste des fichiers indispensables pour le fonctionnement 100% hors-ligne
 const ASSETS = [
-  './',
-  './index.html',
-  './bulletin.html',
-  './accueil.html',
+  '/',
+  '/index.html',
+  '/bulletin.html',
+  '/accueil.html',
   './tailwind.min.js',
   './fontawesome.min.css',
   './html2pdf.bundle.min.js',
   './idb-keyval.js', 
-  './manifest.json',
+  '/manifest.json',
   './icon-192.png',
   './icon-512.png',
   // Ajout OBLIGATOIRE des polices pour que les icônes s'affichent !
