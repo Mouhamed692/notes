@@ -1342,11 +1342,21 @@ function updatePeriodDropdown() {
     // Sauvegarder la valeur finale ajustée
     localStorage.setItem('periodeCourante', periodSelect.value);
 }
-      // Écoute les changements manuels de trimestre/semestre pour stabiliser l'affichage
-document.getElementById('select-period').addEventListener('change', function(e) {
-    localStorage.setItem('periodeCourante', e.target.value);
-    // Si tu as une fonction pour recharger ou rafraîchir les notes de la table, appelle-la ici (ex: loadGrades())
-});  
+      
+document.addEventListener('DOMContentLoaded', () => {
+    const periodSelect = document.getElementById('select-period');
+    
+    // On vérifie que le menu existe bien sur cette page avant d'écouter les clics !
+    if (periodSelect !== null) {
+        periodSelect.addEventListener('change', function(e) {
+            localStorage.setItem('periodeCourante', e.target.value);
+            
+            if (typeof loadGrades === 'function') {
+                loadGrades();
+            }
+        });
+    }
+});
     </script>
 </body>
 </html>
