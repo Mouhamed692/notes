@@ -885,41 +885,35 @@
             updateSettingsPeriodSelect();
         }
 
-    function updateSettingsPeriodSelect() {
-            const sel = document.getElementById('settings-semester');
-            if (!sel) return;
-            const isPrimClass = isPrimary(appState.selectedClass);
-            sel.innerHTML = "";
-            const max = isPrimClass ? 3 : 2;
-            const prefix = isPrimClass ? "Trimestre" : "Semestre";
-            
-            // Récupérer la période en cours
-            let savedPeriod = appState.currentSemester || 1;
-            if (savedPeriod > max) savedPeriod = max; // Sécurité si on passe du primaire au secondaire
-            
-            for (let i = 1; i <= max; i++) {
-                const opt = document.createElement('option');
-                opt.value = i; 
-                opt.textContent = `${prefix} ${i}`;
-                if (savedPeriod == i) opt.selected = true;
-                sel.appendChild(opt);
-            }
-            document.getElementById('lbl-settings-period').textContent = isPrimClass ? "Trimestre courant" : "Semestre courant";
-            appState.currentSemester = savedPeriod;
+ function updateSettingsPeriodSelect() {
+        const sel = document.getElementById('settings-semester');
+        const isPrimClass = isPrimary(appState.selectedClass);
+        sel.innerHTML = "";
+        const max = isPrimClass ? 3 : 2;
+        const prefix = isPrimClass ? "Trimestre" : "Semestre";
+        for (let i = 1; i <= max; i++) {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = `${prefix} ${i}`;
+            if (appState.currentSemester == i) opt.selected = true;
+            sel.appendChild(opt);
         }
+        document.getElementById('lbl-settings-period').textContent = isPrimClass ? "Trimestre courant" : "Semestre courant";
+    }
 
-        // Le listener n'est plus nécessaire ici car la sauvegarde se fait via le bouton "Appliquer" du modal (saveSystemSettings)
+    function saveSettings() {
+        appState.currentYear = document.getElementById('settings-year').value;
+        appState.currentSemester = parseInt(document.getElementById('settings-semester').value);
+        saveToStorage();
+        closeModal('settings-modal');
+        updateHeaderDisplays();
+        render();
+    }
 
-        function saveSystemSettings() {
-            appState.currentYear = document.getElementById('settings-year').value.trim() || "2024-2025";
-            appState.currentSemester = parseInt(document.getElementById('settings-semester').value) || 1;
-            saveToStorage();
-            closeModal('settings-modal');
-            updateHeaderDisplays();
-            render();
-            showToast("Configuration générale appliquée");
-        }
-
+    function updateHeaderDisplays() {
+        document.getElementById('display-year').textContent = appState.currentYear;
+        document.getElementById('display-semester').textContent = getPeriodLabel(appState.selectedClass, appState.currentSemester);
+    }
         function toggleDev3() {
             const key = getCurrentClassKey();
             activeDev3Map[key] = !activeDev3Map[key];
