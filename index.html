@@ -590,12 +590,12 @@
             }
         }
 
-        function updateHeaderDisplays() {
-            document.getElementById('display-year').textContent = appState.currentYear;
-            const prefix = isPrimary(appState.selectedClass) ? "Trimestre" : "Semestre";
-            document.getElementById('display-semester').textContent = `${prefix} ${appState.currentSemester}`;
-        }
-
+      
+function updateHeaderDisplays() {
+        document.getElementById('display-year').textContent = appState.currentYear;
+        // On passe d'abord le semestre (numéro), puis la classe pour détecter si c'est primaire
+        document.getElementById('display-semester').textContent = getPeriodLabel(appState.currentSemester, appState.selectedClass);
+    }
         function openModal(id) {
             document.getElementById(id).classList.remove('hidden');
         }
@@ -1311,66 +1311,7 @@ function imprimerBulletinEleve(studentId) {
                 row.style.display = text.includes(val) ? "" : "none";
             }
         }
-function updatePeriodDropdown() {
-    // 1. Récupérer la classe sélectionnée
-    const classSelect = document.getElementById('select-classe');
-    if (!classSelect) return; 
-    
-    const classKey = classSelect.value;
-    const isPrim = isPrimary(classKey); 
-    const periodSelect = document.getElementById('select-period');
-    if (!periodSelect) return;
-    
-    // 2. Mémoriser la période courante (depuis le stockage local ou la valeur actuelle)
-    let savedPeriod = localStorage.getItem('periodeCourante') || periodSelect.value || "1";
-    
-    // 3. Vider le menu actuel
-    periodSelect.innerHTML = '';
-    
-    // 4. Définir les limites (3 pour primaire, 2 pour secondaire)
-    const max = isPrim ? 3 : 2;
-    const label = isPrim ? "Trimestre" : "Semestre";
-    
-    // 5. Remplir le menu dynamiquement
-    for (let i = 1; i <= max; i++) {
-        let opt = document.createElement('option');
-        opt.value = i;
-        opt.textContent = `${label} ${i}`;
-        
-        // Maintien automatique de la période courante
-        // Si on était au Trimestre 3 et qu'on passe au Secondaire (max 2), on sélectionne le Semestre 2
-        if (i.toString() === savedPeriod || (i === max && parseInt(savedPeriod) > max)) {
-            opt.selected = true;
-        }
-        
-        periodSelect.appendChild(opt);
-    }
 
-    // Sauvegarder la valeur finale ajustée
-    localStorage.setItem('periodeCourante', periodSelect.value);
-}
-    document.addEventListener('DOMContentLoaded', () => {
-    const periodSelect = document.getElementById('select-period');
-    
-    if (periodSelect !== null) {
-        // 1. Charger la période sauvegardée ou mettre "1" par défaut
-        const savedPeriod = localStorage.getItem('periodeCourante') || "1";
-        
-        // 2. Forcer la mise à jour dynamique du menu (Trimestres ou Semestres)
-        updatePeriodDropdown();
-        
-        // 3. Appliquer la valeur sauvegardée au sélecteur
-        periodSelect.value = savedPeriod;
-
-        // 4. Écouter les changements de l'utilisateur
-        periodSelect.addEventListener('change', function(e) {
-            localStorage.setItem('periodeCourante', e.target.value);
-            if (typeof appState !== 'undefined') {
-                appState.currentSemester = parseInt(e.target.value);
-            }
-        });
-    }
-});  
         function getPeriodLabel(period, isPrim) {
     // Si isPrim n'est pas passé en paramètre, on le détecte automatiquement
     if (isPrim === undefined && typeof appState !== 'undefined' && appState.selectedClass) {
