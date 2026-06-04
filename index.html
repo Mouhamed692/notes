@@ -1355,21 +1355,29 @@ function updatePeriodDropdown() {
     // Sauvegarder la valeur finale ajustée
     localStorage.setItem('periodeCourante', periodSelect.value);
 }
-      
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
     const periodSelect = document.getElementById('select-period');
     
-    // On vérifie que le menu existe bien sur cette page avant d'écouter les clics !
     if (periodSelect !== null) {
+        // 1. Charger la période sauvegardée ou mettre "1" par défaut
+        const savedPeriod = localStorage.getItem('periodeCourante') || "1";
+        
+        // 2. Forcer la mise à jour dynamique du menu (Trimestres ou Semestres)
+        updatePeriodDropdown();
+        
+        // 3. Appliquer la valeur sauvegardée au sélecteur
+        periodSelect.value = savedPeriod;
+
+        // 4. Écouter les changements de l'utilisateur
         periodSelect.addEventListener('change', function(e) {
             localStorage.setItem('periodeCourante', e.target.value);
-            
-            if (typeof loadGrades === 'function') {
-                loadGrades();
+            if (typeof appState !== 'undefined') {
+                appState.currentSemester = parseInt(e.target.value);
             }
         });
     }
-});
+});  
+
     </script>
 </body>
 </html>
