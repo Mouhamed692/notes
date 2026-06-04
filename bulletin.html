@@ -582,6 +582,29 @@
             document.getElementById('error-text').textContent = err;
         }
     };
+    // 1. Ajoute bien le mot "async" devant la fonction
+async function chargerDonneesBulletin() {
+    // 2. Récupérer les identifiants de l'élève et de la classe courante depuis le localStorage
+    const studentId = localStorage.getItem('currentStudentId'); 
+    const classeCourante = localStorage.getItem('classeCourante');
+    const periodeCourante = localStorage.getItem('periodeCourante') || "1";
+
+    // 3. Utilise "await" pour forcer le script à attendre la base de données IndexedDB
+    const databaseGrades = await idbKeyval.get('notes') || {}; // Remplace 'notes' par ta clé exacte (ex: 'gestnotes_notes')
+    const databaseSubjects = await idbKeyval.get('matieres') || {};
+
+    // 4. Exemple de récupération des notes de l'élève pour la période choisie
+    // (Adapte cette ligne selon la structure exacte de ton appState)
+    const notesEleve = databaseGrades[classeCourante]?.[periodeCourante]?.[studentId] || {};
+
+    console.log("Notes récupérées pour le bulletin :", notesEleve);
+
+    // Ensuite, injecte ces notes récupérées dans ton tableau HTML...
+    // Ton code de génération des lignes du bulletin continue ici en utilisant "notesEleve"
+}
+
+// Appeler la fonction au chargement du bulletin
+window.addEventListener('DOMContentLoaded', chargerDonneesBulletin);
 </script>
 </body>
 </html>
