@@ -408,25 +408,27 @@
         </div>
     </div>
 
-    <div id="settings-modal" class="hidden fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+  <div id="settings-modal" class="hidden fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-2xl shadow-xl w-full max-w-sm p-5 border border-slate-200">
-            <h3 class="text-lg font-bold mb-4 text-slate-800"><i class="fa-solid fa-gears text-indigo-600"></i> Paramètres système</h3>
+            <h3 class="text-lg font-bold mb-4 text-slate-800 flex items-center gap-2"><i class="fa-solid fa-gear text-[#4c1d95]"></i> Configuration</h3>
             <div class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold text-slate-500 mb-1">Année académique</label>
-                    <input type="text" id="settings-year" class="text-slate-900 w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 font-medium">
+                    <input type="text" id="settings-year" class="text-slate-900 w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5">
                 </div>
                 <div>
                     <label id="lbl-settings-period" class="block text-xs font-semibold text-slate-500 mb-1">Période courante</label>
-                    <select id="settings-semester" class="text-slate-900 w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 font-medium"></select>
+                    <select id="settings-semester" class="text-slate-900 w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5"></select>
                 </div>
             </div>
-            <div class="mt-6 flex justify-end gap-2 border-t pt-3">
-                <button onclick="closeModal('settings-modal')" class="px-4 py-2 rounded-xl text-slate-500 hover:bg-slate-100 text-sm font-semibold transition-all">Annuler</button>
-                <button onclick="saveSystemSettings()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-sm">Appliquer</button>
+            <div class="mt-6 flex justify-end gap-2">
+                <button onclick="closeModal('settings-modal')" class="px-4 py-2 rounded-xl text-slate-500 text-sm font-semibold">Annuler</button>
+                <button onclick="saveSettings()" class="bg-[#4c1d95] text-white px-4 py-2 rounded-xl text-sm font-semibold">Appliquer</button>
             </div>
         </div>
     </div>
+
+           
 
   <div id="mensualites-modal" class="hidden fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-2 sm:p-4 backdrop-blur-sm">
     <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl p-4 sm:p-6 border border-slate-200 flex flex-col max-h-[90vh]">
