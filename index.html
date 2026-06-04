@@ -1371,6 +1371,19 @@ function updatePeriodDropdown() {
         });
     }
 });  
+        function getPeriodLabel(period, isPrim) {
+    // Si isPrim n'est pas passé en paramètre, on le détecte automatiquement
+    if (isPrim === undefined && typeof appState !== 'undefined' && appState.selectedClass) {
+        isPrim = isPrimary(appState.selectedClass);
+    }
+    
+    const p = parseInt(period) || 1;
+    if (isPrim) {
+        return p === 1 ? "1er Trimestre" : `${p}ème Trimestre`;
+    } else {
+        return p === 1 ? "1er Semestre" : `${p}ème Semestre`;
+    }
+}
 
     </script>
 </body>
