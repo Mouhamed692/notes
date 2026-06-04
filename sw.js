@@ -5,17 +5,13 @@ const ASSETS = [
   '/',
   '/index.html',
   '/bulletin.html',
-  '/accueil.html',
+  '/accueil.html', // Ajout de l'accueil au cache
   './tailwind.min.js',
   './fontawesome.min.css',
   './html2pdf.bundle.min.js',
-  './idb-keyval.js', 
   '/manifest.json',
-  './icon-192.png',
-  './icon-512.png',
-  // Ajout OBLIGATOIRE des polices pour que les icônes s'affichent !
-  './fa-solid-900.woff2',
-  './fa-solid-900.ttf'
+  './icon-192.png', // Vos icônes locales
+  './icon-512.png'
 ];
 
 // 1. Installation : Création du cache et mise en mémoire des ressources
