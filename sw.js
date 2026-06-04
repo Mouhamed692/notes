@@ -5,13 +5,18 @@ const ASSETS = [
   '/',
   '/index.html',
   '/bulletin.html',
-  '/accueil.html', // Ajout de l'accueil au cache
-  './tailwind.min.js',
-  './fontawesome.min.css',
-  './html2pdf.bundle.min.js',
+  '/accueil.html',
   '/manifest.json',
-  './icon-192.png', // Vos icônes locales
-  './icon-512.png'
+  './tailwind.min.js',         // Fichier local (OK)
+  './html2pdf.bundle.min.js',  // Fichier local (OK)
+  './icon-192.png',            // Icône locale (OK)
+  './icon-512.png',            // Icône locale (OK)
+
+  // 1. AJOUT DE IDB-KEYVAL (Indispensable pour ta base de données hors-ligne)
+  'https://unpkg.com/idb-keyval@6.2.1/dist/umd.js',
+
+  // 2. CORRECTION DE FONTAWESOME (Tu utilises le lien CDN dans ton HTML, il faut donc cacher ce même lien)
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
 // 1. Installation : Création du cache et mise en mémoire des ressources
